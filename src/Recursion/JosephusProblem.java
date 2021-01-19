@@ -2,8 +2,6 @@ package Recursion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * @author : Shyam Sharma
@@ -14,15 +12,17 @@ public class JosephusProblem {
     public static void main(String[] args) {
         int k= 3;
         ArrayList arrayList = new ArrayList(Arrays.asList(1,2,3,4,5));
-        System.out.println(kill(arrayList, k));
+        int currentIndex= 0;
+        System.out.println(kill(arrayList, k, currentIndex));
     }
 
-    private static Integer kill(ArrayList<Integer> arrayList, int k) {
+    private static Integer kill(ArrayList<Integer> arrayList, int k, int currentIndex) {
         if (arrayList.size() == 1){
             return arrayList.get(0);
         } else {
-            arrayList.remove(k-1);
-            return kill(arrayList, ((k +k) % arrayList.size()));
+            currentIndex = (currentIndex + k-1) % arrayList.size();
+            arrayList.remove(currentIndex);
+            return kill(arrayList, k, currentIndex);
         }
     }
 }
